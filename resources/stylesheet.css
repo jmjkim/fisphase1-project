@@ -1,0 +1,44 @@
+body {
+    border: 1px solid rgb(50, 50, 50);
+    margin: 0px;
+}
+
+h1 {
+    background-color: rgb(50, 50, 50);
+    color: rgb(255, 255, 255);
+    margin: 0px;
+    text-align: center;
+}
+
+img {
+    margin: 20px auto;
+    border-radius: 50%;
+}
+
+.search_result {
+    background-color: #AFEEEE;
+}
+
+#employee_finder {
+    margin: 0px auto;
+    border-bottom: 1px solid rgb(50, 50, 50);
+    text-align: center;
+    padding: 10px;
+}
+
+.list_container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.list_container ul {
+    margin: 30px;
+    border: 1px solid;
+    border-radius: 20px;
+    list-style: none;
+    text-align: center;
+}
+
+.list_container li {
+    line-height: 30px;
+}
