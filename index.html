@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Database</title>
     <link rel="stylesheet" href="resources/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
     <script src="index.js" type="text/javascript"></script>
 </head>
 <body>
     <header>
         <h1>Employee Database Manager</h1>
         <form id="employee_finder">
-            <label for="id">ID:</label>
-            <input type="search" id="id_search" name="id" maxlength="4">
-            <button id="search_btn">Search</button>
+            <input type="search" id="id_search" maxlength="4" placeholder="Employee ID">
+            <button id="search_btn" type="submit">Search</button>
         </form>
     </header>
 
     <main>
-        <div class="list_container"></div>
+        <h3>Employee List</h3>
+        <div class="employee_list_container"></div>
     </main>
 </body>
 </html>

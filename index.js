@@ -1,72 +1,91 @@
 // https://random-data-api.com/api/users/random_user
 
+document.addEventListener("DOMContentLoaded", () => { // EventListener (1/3)
+    dataFetcher()
+    dataFinder()
+})
+
 function dataFetcher() {
     fetch("http://localhost:3000/employees")
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => dataDisplayer(data))
     .catch(error => console.error(error))
 }
 
-function dataFinder(data) {
+function dataDisplayer(data) {
+    const refinedData = data.map((obj) => (({
+        avatar, 
+        id, 
+        first_name, 
+        last_name, 
+        social_insurance_number, 
+        date_of_birth, 
+        address, 
+        email, 
+        phone_number, 
+        employment
+    }) => ({
+           photo: avatar, 
+           id, 
+           first: first_name, 
+           last: last_name, 
+           ssn: social_insurance_number, 
+           dob: date_of_birth, 
+           address: `${address.street_address} ${address.city} ${address.state} ${address.zip_code.split("-")[0]}`, 
+           email, 
+           phone: phone_number, 
+           position: employment.title
+       }))(obj))
+
+    refinedData.forEach(obj => {
+    const mainContainer = document.querySelector(".employee_list_container")
+    const employeeDiv = document.createElement("div") 
+    const subContainer = document.createElement("div")
+    const categoryDiv = document.createElement("div") 
+    const detailDiv = document.createElement("div") 
+    const img = document.createElement("img")
+    
+    mainContainer.appendChild(employeeDiv)
+    employeeDiv.appendChild(img)
+    employeeDiv.appendChild(subContainer)
+    subContainer.appendChild(categoryDiv)
+    subContainer.appendChild(detailDiv)
+    
+    employeeDiv.setAttribute("class", "employee_div")
+    employeeDiv.setAttribute("id", `employee_${obj.id}`)
+    subContainer.setAttribute("class", "subcontainer")
+    categoryDiv.setAttribute("class", "category_div")
+    detailDiv.setAttribute("class", "detail_div")
+    img.setAttribute("src", obj.photo)
+    
+
+    // Categories for employee detail
+    Object.entries(obj).forEach(entry => {
+        const categoryLi = document.createElement("li")
+        const detailLi = document.createElement("li")
+        
+        if (entry[0] !== "photo") {
+            categoryDiv.appendChild(categoryLi)
+            detailDiv.appendChild(detailLi)
+            
+            categoryLi.insertAdjacentText("afterbegin", entry[0])
+            detailLi.insertAdjacentText("afterbegin", entry[1])
+        }})
+    })
+}
+
+function dataFinder() {
     const form = document.querySelector("#employee_finder")
 
-    form.addEventListener("submit", (event) => { // eventListener (1/3)
-        const target = document.querySelector(`#id-${data.id}`)
-        const targetId = +event.target[0].value
-        
-        if (targetId === data.id) {
-            target.scrollIntoView()
-            target.setAttribute("class", "search_result")
+    form.addEventListener("submit", (e) => { // EventListener (2/3)
+        const targetId = +e.target[0].value
+        const target = document.querySelector(`#employee_${targetId}`)
 
-            target.addEventListener("click", () => {
-                target.removeAttribute("class")
-            })
-        }
-        event.preventDefault()
-    })
-}    
-
-function dataDisplayer(data) {
-    const refinedData = data.map((object) => (({avatar, id, first_name, last_name, social_insurance_number, date_of_birth, address, email, phone_number, employment}) => ({avatar, id, first_name, last_name, social_insurance_number, date_of_birth, address, email, phone_number, employment}))(object))
-    const container = document.querySelector("div.list_container")
-
-    refinedData.map(object => {
-        const arrOfObject = Object.values(object)
-        const ul = document.createElement("ul")
-        const img = document.createElement("img")
-        const li = document.createElement("li")
-        const btn = document.createElement("button")
-        btn.innerText = "Edit"
-
-        const address = {
-            street_address: object.address.street_address,
-            city: object.address.city,
-            state: object.address.state,
-            zip_code: object.address.zip_code,
-        }    
-        const newAddress = Object.values(address).join(" ")
-
-        switch(arrOfObject[0]) {
-            case arrOfObject[0]:
-                img.setAttribute("src", object.avatar)
-                ul.appendChild(img)
-                ul.appendChild(btn)
-
-            case arrOfObject[9]:
-                li.insertAdjacentText("afterbegin", `Position: ${Object.values(arrOfObject[9])[0]}`)
-
-            default:
-                li.insertAdjacentText("beforeend", ` ID: ${arrOfObject[1]} First: ${arrOfObject[2]} Last: ${arrOfObject[3]} SSN: ${arrOfObject[4]} DOB: ${arrOfObject[5]} ${newAddress} Email: ${arrOfObject[7]} Phone: ${arrOfObject[8]}`)
-        }
-        container.appendChild(ul)
-        ul.appendChild(li)
-        ul.setAttribute("id", `id-${arrOfObject[1]}`)
-
-        btn.addEventListener("click", (event) => {
-            
+        target.setAttribute("class", "search_result") // Simple interactivity: Highlights on searched employee
+        target.addEventListener("click", () => { // Removes highlight
+            target.setAttribute("class", "employee_div")
         })
-
-        dataFinder(object)
+        e.preventDefault()
     })
 }    
         
@@ -83,8 +102,3 @@ function dataDisplayer(data) {
 //     })
 //     return deleteBtn
 // }
-
-document.addEventListener("DOMContentLoaded", () => { // eventListener (3/3)
-    dataFetcher()
-    dataFinder()
-})
