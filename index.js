@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => { // EventListener (1/3)
     dataFinder()
 })
 
+
 function dataFetcher() {
     fetch("http://localhost:3000/employees")
     .then(res => res.json())
@@ -12,7 +13,9 @@ function dataFetcher() {
     .catch(error => console.error(error))
 }
 
+
 function dataDisplayer(data) {
+    // Refines data (Object) into simple format
     const refinedData = data.map((obj) => (({
         avatar, 
         id, 
@@ -37,6 +40,8 @@ function dataDisplayer(data) {
            position: employment.title
        }))(obj))
 
+
+    // Creates employee containers
     refinedData.forEach(obj => {
     const mainContainer = document.querySelector(".employee_list_container")
     const employeeDiv = document.createElement("div") 
@@ -44,22 +49,30 @@ function dataDisplayer(data) {
     const categoryDiv = document.createElement("div") 
     const detailDiv = document.createElement("div") 
     const img = document.createElement("img")
+
+    const editBtn = document.createElement("button")
     
     mainContainer.appendChild(employeeDiv)
     employeeDiv.appendChild(img)
     employeeDiv.appendChild(subContainer)
     subContainer.appendChild(categoryDiv)
     subContainer.appendChild(detailDiv)
+
+    employeeDiv.appendChild(editBtn)
     
+    img.setAttribute("src", obj.photo)
     employeeDiv.setAttribute("class", "employee_div")
     employeeDiv.setAttribute("id", `employee_${obj.id}`)
-    subContainer.setAttribute("class", "subcontainer")
+    subContainer.setAttribute("class", "subContainer")
     categoryDiv.setAttribute("class", "category_div")
     detailDiv.setAttribute("class", "detail_div")
-    img.setAttribute("src", obj.photo)
-    
 
-    // Categories for employee detail
+    editBtn.setAttribute("class", "edit_btn")
+    editBtn.setAttribute("id", `edit_btn_${obj.id}`)
+    editBtn.innerText = "Edit"
+
+
+    // Creates Categories & Detail contents
     Object.entries(obj).forEach(entry => {
         const categoryLi = document.createElement("li")
         const detailLi = document.createElement("li")
@@ -68,37 +81,40 @@ function dataDisplayer(data) {
             categoryDiv.appendChild(categoryLi)
             detailDiv.appendChild(detailLi)
             
-            categoryLi.insertAdjacentText("afterbegin", entry[0])
+            categoryLi.insertAdjacentText("afterbegin", entry[0].toUpperCase())
             detailLi.insertAdjacentText("afterbegin", entry[1])
         }})
+    dataEditor(editBtn, obj.id)    
     })
 }
+
 
 function dataFinder() {
     const form = document.querySelector("#employee_finder")
 
     form.addEventListener("submit", (e) => { // EventListener (2/3)
-        const targetId = +e.target[0].value
-        const target = document.querySelector(`#employee_${targetId}`)
+        const target = document.querySelector(`#employee_${+e.target[0].value}`)
 
+        target.scrollIntoView(true)
         target.setAttribute("class", "search_result") // Simple interactivity: Highlights on searched employee
-        target.addEventListener("click", () => { // Removes highlight
-            target.setAttribute("class", "employee_div")
+        target.addEventListener("click", () => target.setAttribute("class", "employee_div")) // Removes highlight
+
+        e.preventDefault()
+    })
+}
+
+
+function dataEditor(btn, targetId) {
+    btn.addEventListener("click", (e) => {
+        const target = document.querySelector(`#employee_${targetId}`)
+        const detailLi = target.childNodes[1].childNodes[1]
+        detailLi.setAttribute("contenteditable", true)
+
+        detailLi.addEventListener("keydown", (e) => {
+            if (e.code === "Escape") {
+                detailLi.setAttribute("contenteditable", false)
+            }
         })
         e.preventDefault()
     })
-}    
-        
-// function deleteButton(data) {
-//     const deleteBtn = document.createElement("button")
-
-//     deleteBtn.innerText = "Delete"
-//     deleteBtn.setAttribute("class", "delete-btn")
-//     deleteBtn.addEventListener("click", () => {
-//         fetch(`http://localhost:3000/employees/${data.id}`, {
-//             method: "DELETE",
-//         })
-//         .then(() => li.remove())
-//     })
-//     return deleteBtn
-// }
+}

@@ -1,82 +1,76 @@
 * {
     font-family: 'DM Sans', sans-serif;
-}
-
-body {
-    border: 1px solid;
     margin: 0px;
 }
 
-h1, h3 {
+h1, h2 {
     background-color: #555;
     color: #fff;
-    margin: 0px;
     text-align: center;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    position: sticky;
+    top: 0px;
+}
+
+#employee_finder {
+    padding: 6px;
+    position: sticky;
+    top: 0px;
 }
 
 img {
     background-color: #fff;
-    border: 1px solid #e4e4e4;
-    margin: 20px 4px 20px 2px;
+    border: 2px solid #e4e4e4;
     border-radius: 50%;
-    width: 50%;
-}
-
-#employee_finder {
-    margin: 0px auto;
-    border-bottom: 1px solid;
-    text-align: center;
-    padding: 10px;
+    margin: 0px 20px;
+    max-width: 100%;
 }
 
 .search_result {
-    display: flex;
-    background-color: #fafafa;
-    border: 5px solid #8dff30;
+    align-items: center;
+    background-color: #f5f5f5;
+    border: 2px solid #33ff00;
     border-radius: 5px;
-    margin: 0px 6px 6px 0px;
-    padding: 0px 4px 0px 4px;
-    padding-inline-start: 0px;
-    padding-inline-end: 0px;
+    display: inline-flex;
+    margin: 10px 0px;
 }
 
 .employee_list_container {
-    display: grid;
-    grid-template-columns: auto auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-self: center;
+    margin: 5px auto;
+    width: max-content;
 }
 
 .employee_div {
-    display: flex;
-    background-color: #fafafa;
+    align-items: center;
+    background-color: #f5f5f5;
+    border: 2px solid #dbdbdb;
     border-radius: 5px;
-    margin: 0px 6px 6px 0px;
-    padding: 0px 4px 0px 4px;
-    padding-inline-start: 0px;
-    padding-inline-end: 0px;
+    display: inline-flex;
+    margin: 10px 0px;
 }
 
-.subcontainer {
-    display: grid;
-    grid-template-columns: auto auto;
-    align-content: center;
-    margin: 10px 0px 10px 0px;
+.edit_btn {
+    margin-bottom: 14px;
+    align-self: flex-end;
 }
 
-.category_div li {
-    background-color: #ebfaff;
-    border-radius: 5px;
-    display: flex;
+.subContainer {
+    display: inline-flex;
     margin: 4px;
-    padding: 4px;
-    line-height: 23.5px;
-    text-transform: uppercase;
 }
 
+.category_div li,
 .detail_div li {
-    display: flex;
     background-color: #ebfaff;
     border-radius: 5px;
-    margin: 4px 0px 4px 4px;
-    padding: 4px;
-    overflow: auto;
+    display: flex;
+    margin: 10px;
+    padding: 2px;
 }
