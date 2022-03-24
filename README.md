@@ -1,3 +1,3 @@
-# Project Title: Human Resource Manager
+# **Human Resource Manager**
 
 ## *Project Description*
