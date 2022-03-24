@@ -19,15 +19,9 @@
       },
       "address": {
         "city": "North Olen",
-        "street_name": "Gaylord Forest",
         "street_address": "67687 Jeanett Flat",
         "zip_code": "32249-5022",
-        "state": "Wisconsin",
-        "country": "United States",
-        "coordinates": {
-          "lat": 55.65833348035042,
-          "lng": -15.240277898482987
-        }
+        "state": "Wisconsin"
       },
       "credit_card": {
         "cc_number": "5463-1776-6273-7910"
@@ -638,20 +632,13 @@
       "social_insurance_number": "541658266",
       "date_of_birth": "1977-07-29",
       "employment": {
-        "title": "Dynamic Consultant",
-        "key_skill": "Work under pressure"
+        "title": "Dynamic Consultant"
       },
       "address": {
         "city": "South Trang",
-        "street_name": "Sherie Brooks",
         "street_address": "32135 Nanette Loop",
         "zip_code": "07571",
-        "state": "Pennsylvania",
-        "country": "United States",
-        "coordinates": {
-          "lat": -12.280934831057323,
-          "lng": -68.75100487674709
-        }
+        "state": "Pennsylvania"
       },
       "credit_card": {
         "cc_number": "4260478455112"
