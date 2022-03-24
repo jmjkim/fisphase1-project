@@ -75,7 +75,7 @@
       "id": 5139,
       "uid": "3380e9f8-06b5-4ba3-a752-a9b6ded20ef6",
       "password": "W1v3TRwqEY",
-      "first_name": "Gwyn",
+      "first_name": "Jack",
       "last_name": "Gislason",
       "username": "gwyn.gislason",
       "email": "gwyn.gislason@email.com",
@@ -85,20 +85,13 @@
       "social_insurance_number": "786053058",
       "date_of_birth": "1980-04-10",
       "employment": {
-        "title": "Forward Executive",
-        "key_skill": "Confidence"
+        "title": "Forward Executive"
       },
       "address": {
-        "city": "Lowefurt",
-        "street_name": "Shenna Island",
+        "city": "Lowefurt Indiana",
         "street_address": "56578 Nikolaus Brooks",
-        "zip_code": "70836-3362",
-        "state": "Indiana",
-        "country": "United States",
-        "coordinates": {
-          "lat": 36.0062470447388,
-          "lng": -164.1022932568872
-        }
+        "zip_code": "undefined",
+        "state": "70836-3362"
       },
       "credit_card": {
         "cc_number": "4158581699982"

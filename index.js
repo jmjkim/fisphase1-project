@@ -1,9 +1,10 @@
-// https://random-data-api.com/api/users/random_user
+// Public API: https://random-data-api.com/api/users/random_user
 
 document.addEventListener("DOMContentLoaded", () => { // EventListener (1/3)
     dataFetcher(dataDisplayer)
     dataFinder()
 })
+
 
 function dataFetcher(callback) {
     fetch("http://localhost:3000/employees")
@@ -11,6 +12,7 @@ function dataFetcher(callback) {
     .then(callback)
     .catch(error => console.error(error))
 }
+
 
 function dataDisplayer(data) {
     const refinedData = data.map((obj) => (({
@@ -46,15 +48,14 @@ function dataDisplayer(data) {
     const detailDiv = document.createElement("div") 
     const img = document.createElement("img")
     const editBtn = document.createElement("button")
-    const submitEdit = document.createElement("button")
+    const updateEdit = document.createElement("button")
     
-    mainContainer.appendChild(employeeDiv)
     employeeDiv.appendChild(img)
     employeeDiv.appendChild(subContainer)
     subContainer.appendChild(categoryDiv)
     subContainer.appendChild(detailDiv)
     employeeDiv.appendChild(editBtn)
-    employeeDiv.appendChild(submitEdit)
+    employeeDiv.appendChild(updateEdit)
     
     img.setAttribute("src", obj.photo)
     employeeDiv.setAttribute("class", "employee_div")
@@ -64,11 +65,13 @@ function dataDisplayer(data) {
     detailDiv.setAttribute("class", "detail_div")
     editBtn.setAttribute("class", "button")
     editBtn.setAttribute("id", `edit_btn_${obj.id}`)
-    submitEdit.setAttribute("class", "button")
-    submitEdit.setAttribute("id", `submit_edit_${obj.id}`)
+    updateEdit.setAttribute("class", "button")
+    updateEdit.setAttribute("id", `submit_edit_${obj.id}`)
 
     editBtn.innerText = "Edit"
-    submitEdit.innerText = "Update"
+    updateEdit.innerText = "Update"
+    
+    mainContainer.appendChild(employeeDiv)
 
     // Creates Categories & Detail contents
     Object.entries(obj).forEach(entry => {
@@ -86,25 +89,27 @@ function dataDisplayer(data) {
                 detailLi.setAttribute("class", "pid")
             }
         }})
-    dataEditor(editBtn, submitEdit, obj.id)    
+    dataEditor(editBtn, updateEdit, obj.id)    
     })
 }
+
 
 function dataFinder() {
     const form = document.querySelector("#employee_finder")
     
     form.addEventListener("submit", (e) => { // EventListener (2/3)
+        e.preventDefault()
+
         const target = document.querySelector(`#employee_${+e.target[0].value}`)
 
         target.scrollIntoView(true)
         target.setAttribute("class", "search_result") // Simple interactivity: Highlights on searched employee
         target.addEventListener("click", () => target.setAttribute("class", "employee_div")) // Removes highlight
-        
-        e.preventDefault()
     })
 }
 
-function dataEditor(editBtn, submitEdit, targetId) {    
+
+function dataEditor(editBtn, updateEdit, targetId) {    
     const target = document.querySelector(`#employee_${targetId}`)
     const detailLi = target.childNodes[1].childNodes[1]
 
@@ -120,7 +125,7 @@ function dataEditor(editBtn, submitEdit, targetId) {
         })
     })
 
-    submitEdit.addEventListener("click", (e) => {
+    updateEdit.addEventListener("click", () => {
         detailLi.setAttribute("contenteditable", false)
         detailLi.setAttribute("class", "detail_div")
 
@@ -152,6 +157,5 @@ function dataEditor(editBtn, submitEdit, targetId) {
                 }})
             })
         )
-        e.preventDefault()
     })
 }
