@@ -32,8 +32,8 @@ img {
 
 .search_result {
     align-items: center;
-    background-color: #c5edff;
-    border: 1px solid #dbdbdb;
+    background-color: #f5f5f5;
+    border: 2px solid #30ff3b;
     border-radius: 5px;
     display: inline-flex;
     margin: 10px 0px;
@@ -50,15 +50,6 @@ img {
 .employee_div {
     align-items: center;
     background-color: #f5f5f5;
-    border: 1px solid #dbdbdb;
-    border-radius: 5px;
-    display: inline-flex;
-    margin: 10px 0px;
-}
-
-.employee_div:hover {
-    align-items: center;
-    background-color: #eeeeee;
     border: 1px solid #dbdbdb;
     border-radius: 5px;
     display: inline-flex;
