@@ -1,2 +1,4 @@
-# Project Title: Employee Manager
+# Project Title: Human Resource Manager
+
+## Project Description
 ---
