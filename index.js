@@ -102,7 +102,7 @@ function dataFinder() {
 
         target.scrollIntoView(true)
         target.setAttribute("class", "search_result") // Simple interactivity: Highlights on searched employee
-
+        
         target.addEventListener("click", () => target.setAttribute("class", "employee_div"))
     })
 }
