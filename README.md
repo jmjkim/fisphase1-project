@@ -4,6 +4,9 @@ HR *(Human Resource)* Manager is a simple Javascript application where you can s
 
 >*All of data within the database is virtual (see [Public API](https://random-data-api.com/) reference*).
 
+## Motivation
+I was always curious about how "behind curtain" process of a web browser. After working on this small project, I acquired basic understandings of the "how" and now I am more interested about the back-end side of an application.
+
 ## Features
 - A **search bar** on top right corner, you can enter employee's ID then it will scroll onto the target employee.
 
