@@ -102,6 +102,7 @@ function dataFinder() {
 
         target.scrollIntoView(true)
         target.setAttribute("class", "search_result") // Simple interactivity: Highlights on searched employee
+
         target.addEventListener("click", () => target.setAttribute("class", "employee_div"))
     })
 }
@@ -129,6 +130,11 @@ function dataEditor(editBtn, updateEdit, targetId) {
 
         const splitAddress = detailLi.childNodes[5].innerText.split(" ")
         const liChildNode = detailLi.childNodes
+        
+        const cityOf = `${splitAddress[3]} ${splitAddress[4]}`
+        const streetAddress = `${splitAddress[0]} ${splitAddress[1]} ${splitAddress[2]}`
+        const zip = splitAddress[6]
+        const stateOf = splitAddress[5]
 
         const patchContent = {
             id: liChildNode[0].innerText, 
@@ -137,10 +143,10 @@ function dataEditor(editBtn, updateEdit, targetId) {
             social_insurance_number: liChildNode[3].innerText, 
             date_of_birth: liChildNode[4].innerText, 
             address: {
-                city: `${splitAddress[3]} ${splitAddress[4]}`,
-                street_address: `${splitAddress[0]} ${splitAddress[1]} ${splitAddress[2]}`,
-                zip_code: splitAddress[6],
-                state: splitAddress[5]
+                city: cityOf,
+                street_address: streetAddress,
+                zip_code: zip,
+                state: stateOf
             },
             email: liChildNode[6].innerText,
             phone_number: liChildNode[7].innerText,
