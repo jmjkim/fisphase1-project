@@ -23,8 +23,8 @@ HR *(Human Resource)* Manager is a simple Javascript application where you can s
 [MIT](https://choosealicense.com/licenses/mit/)
 
 ## Contributions
-- Resources from Flatiron School Software Engineering Course.
-- Publicly available articles, lectures, videos from the Internet.
+1. Resources from Flatiron School Software Engineering Course.
+2. Publicly available articles, lectures, videos from the Internet.
 
 ## References
 1. Public API -> [Random Data API](https://random-data-api.com/)
