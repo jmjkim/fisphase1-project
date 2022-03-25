@@ -1,6 +1,4 @@
-// Public API: https://random-data-api.com/api/users/random_user
-
-document.addEventListener("DOMContentLoaded", () => { // EventListener (1/3)
+document.addEventListener("DOMContentLoaded", () => { 
     dataFetcher(dataDisplayer)
     dataFinder()
 })
@@ -41,7 +39,7 @@ function dataDisplayer(data) {
 
     // Creates employee containers
     refinedData.forEach(obj => {
-    const mainContainer = document.querySelector(".employee_list_container")
+    const listContainer = document.querySelector(".employee_list_container")
     const employeeDiv = document.createElement("div") 
     const subContainer = document.createElement("div")
     const categoryDiv = document.createElement("div") 
@@ -71,7 +69,7 @@ function dataDisplayer(data) {
     editBtn.innerText = "Edit"
     updateEdit.innerText = "Update"
     
-    mainContainer.appendChild(employeeDiv)
+    listContainer.appendChild(employeeDiv)
 
     // Creates Categories & Detail contents
     Object.entries(obj).forEach(entry => {
@@ -97,14 +95,14 @@ function dataDisplayer(data) {
 function dataFinder() {
     const form = document.querySelector("#employee_finder")
     
-    form.addEventListener("submit", (e) => { // EventListener (2/3)
+    form.addEventListener("submit", (e) => { 
         e.preventDefault()
 
         const target = document.querySelector(`#employee_${+e.target[0].value}`)
 
         target.scrollIntoView(true)
         target.setAttribute("class", "search_result") // Simple interactivity: Highlights on searched employee
-        target.addEventListener("click", () => target.setAttribute("class", "employee_div")) // Removes highlight
+        target.addEventListener("click", () => target.setAttribute("class", "employee_div"))
     })
 }
 
@@ -132,30 +130,32 @@ function dataEditor(editBtn, updateEdit, targetId) {
         const splitAddress = detailLi.childNodes[5].innerText.split(" ")
         const liChildNode = detailLi.childNodes
 
+        const patchContent = {
+            id: liChildNode[0].innerText, 
+            first_name: liChildNode[1].innerText, 
+            last_name: liChildNode[2].innerText, 
+            social_insurance_number: liChildNode[3].innerText, 
+            date_of_birth: liChildNode[4].innerText, 
+            address: {
+                city: `${splitAddress[3]} ${splitAddress[4]}`,
+                street_address: `${splitAddress[0]} ${splitAddress[1]} ${splitAddress[2]}`,
+                zip_code: splitAddress[6],
+                state: splitAddress[5]
+            },
+            email: liChildNode[6].innerText,
+            phone_number: liChildNode[7].innerText,
+            employment: {
+                title: liChildNode[8].innerText,
+            }
+        }
+
         fetch(`http://localhost:3000/employees/${targetId}`, ({
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json"
             },
-            body: JSON.stringify({
-                id: liChildNode[0].innerText, 
-                first_name: liChildNode[1].innerText, 
-                last_name: liChildNode[2].innerText, 
-                social_insurance_number: liChildNode[3].innerText, 
-                date_of_birth: liChildNode[4].innerText, 
-                address: {
-                    city: `${splitAddress[3]} ${splitAddress[4]}`,
-                    street_address: `${splitAddress[0]} ${splitAddress[1]} ${splitAddress[2]}`,
-                    zip_code: splitAddress[6],
-                    state: splitAddress[5]
-                },
-                email: liChildNode[6].innerText,
-                phone_number: liChildNode[7].innerText,
-                employment: {
-                    title: liChildNode[8].innerText,
-                }})
-            })
-        )
+            body: JSON.stringify(patchContent)
+        }))
     })
 }

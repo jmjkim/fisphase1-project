@@ -1,1 +1,3 @@
-# fisphase1-project
+# Human Resource Manager
+
+## *Project Description*
