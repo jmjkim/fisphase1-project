@@ -11,22 +11,34 @@ function dataFetcher(callback) {
     .catch(err => console.error(err))
 }
 
+
 function dataDisplayer(data) {
-    const destructuredData = data.map((obj) => {
+    const destructuredData = data.map(({
+        avatar, 
+        id, first_name, 
+        last_name, 
+        social_insurance_number, 
+        date_of_birth, 
+        address: {street_address, city, state, zip_code}, 
+        email, 
+        phone_number, 
+        employment: {title}
+    }) => {
         const destructuring = {
-            photo: obj.avatar, 
-            id: obj.id,
-            first: obj.first_name, 
-            last: obj.last_name, 
-            ssn: obj.social_insurance_number, 
-            dob: obj.date_of_birth, 
-            address: `${obj.address.street_address} ${obj.address.city} ${obj.address.state} ${obj.address.zip_code}`, 
-            email: obj.email, 
-            phone: obj.phone_number, 
-            position: `${obj.employment.title}` 
+            photo: avatar, 
+            id,
+            first: first_name, 
+            last: last_name, 
+            ssn: social_insurance_number, 
+            dob: date_of_birth, 
+            address: `${street_address} ${city} ${state} ${zip_code}`, 
+            email, 
+            phone: phone_number, 
+            position: `${title}` 
         }
         return destructuring
     })
+
 
     // Creates employee containers
     destructuredData.forEach(obj => {
@@ -154,7 +166,6 @@ function dataEditor(editBtn, updateEdit, targetId) {
             },
             body: JSON.stringify(patchContent)
         }))
-        .then(res => res.json())
         .catch(err => console.error(err))
     })
 }
