@@ -8,34 +8,25 @@ function dataFetcher(callback) {
     fetch("http://localhost:3000/employees")
     .then(res => res.json())
     .then(callback)
-    .catch(error => console.error(error))
+    .catch(err => console.error(err))
 }
 
-
 function dataDisplayer(data) {
-    const refinedData = data.map((obj) => (({
-        avatar, 
-        id, 
-        first_name, 
-        last_name, 
-        social_insurance_number, 
-        date_of_birth, 
-        address, 
-        email, 
-        phone_number, 
-        employment
-    }) => ({
-           photo: avatar, 
-           id, 
-           first: first_name, 
-           last: last_name, 
-           ssn: social_insurance_number, 
-           dob: date_of_birth, 
-           address: `${address.street_address} ${address.city} ${address.state} ${address.zip_code}`, 
-           email, 
-           phone: phone_number, 
-           position: `${employment.title}` 
-       }))(obj))
+    const refinedData = data.map((obj) => {
+        const newObj = {
+            photo: obj.avatar, 
+            id: obj.id,
+            first: obj.first_name, 
+            last: obj.last_name, 
+            ssn: obj.social_insurance_number, 
+            dob: obj.date_of_birth, 
+            address: `${obj.address.street_address} ${obj.address.city} ${obj.address.state} ${obj.address.zip_code}`, 
+            email: obj.email, 
+            phone: obj.phone_number, 
+            position: `${obj.employment.title}` 
+        }
+        return newObj
+    })
 
     // Creates employee containers
     refinedData.forEach(obj => {
@@ -77,11 +68,11 @@ function dataDisplayer(data) {
         const detailLi = document.createElement("li")
         
         if (entry[0] !== "photo") {
-            categoryDiv.appendChild(categoryLi)
-            detailDiv.appendChild(detailLi)
-            
             categoryLi.insertAdjacentText("afterbegin", entry[0].toUpperCase())
             detailLi.insertAdjacentText("afterbegin", entry[1])
+
+            categoryDiv.appendChild(categoryLi)
+            detailDiv.appendChild(detailLi)
 
             if (entry[0] === "ssn" || entry[0] === "address" || entry[0] === "dob") {
                 detailLi.setAttribute("class", "pid")
@@ -100,10 +91,10 @@ function dataFinder() {
 
         const target = document.querySelector(`#employee_${+e.target[0].value}`)
 
-        target.scrollIntoView(true)
         target.setAttribute("class", "search_result") // Simple interactivity: Highlights on searched employee
-
         target.addEventListener("click", () => target.setAttribute("class", "employee_div"))
+
+        target.scrollIntoView(true)
     })
 }
 
@@ -163,5 +154,7 @@ function dataEditor(editBtn, updateEdit, targetId) {
             },
             body: JSON.stringify(patchContent)
         }))
+        .then(res => res.json())
+        .catch(err => console.error(err))
     })
 }

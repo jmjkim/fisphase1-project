@@ -46,20 +46,12 @@
       "social_insurance_number": "546182031",
       "date_of_birth": "2001-11-27",
       "employment": {
-        "title": "District Engineer",
-        "key_skill": "Proactive"
+        "title": "District Engineer"
       },
       "address": {
-        "city": "Adamsburgh",
-        "street_name": "Schumm Station",
+        "city": "Adamsburgh Maryland",
         "street_address": "4838 Floretta Canyon",
-        "zip_code": "52474-0140",
-        "state": "Maryland",
-        "country": "United States",
-        "coordinates": {
-          "lat": 0.15532698474177664,
-          "lng": -111.39457315475521
-        }
+        "state": "52474-0140"
       },
       "credit_card": {
         "cc_number": "4847060619434"
