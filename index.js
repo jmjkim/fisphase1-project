@@ -12,8 +12,8 @@ function dataFetcher(callback) {
 }
 
 function dataDisplayer(data) {
-    const refinedData = data.map((obj) => {
-        const newObj = {
+    const destructuredData = data.map((obj) => {
+        const destructuring = {
             photo: obj.avatar, 
             id: obj.id,
             first: obj.first_name, 
@@ -25,11 +25,11 @@ function dataDisplayer(data) {
             phone: obj.phone_number, 
             position: `${obj.employment.title}` 
         }
-        return newObj
+        return destructuring
     })
 
     // Creates employee containers
-    refinedData.forEach(obj => {
+    destructuredData.forEach(obj => {
     const listContainer = document.querySelector(".employee_list_container")
     const employeeDiv = document.createElement("div") 
     const subContainer = document.createElement("div")
