@@ -726,20 +726,13 @@
       "social_insurance_number": "272786385",
       "date_of_birth": "1985-02-18",
       "employment": {
-        "title": "Internal Manufacturing Analyst",
-        "key_skill": "Fast learner"
+        "title": "Internal Manufacturing Manager"
       },
       "address": {
-        "city": "Baumbachstad",
-        "street_name": "Turcotte Track",
+        "city": "Baumbachstad North",
         "street_address": "5655 Labadie Light",
         "zip_code": "66462-2407",
-        "state": "North Dakota",
-        "country": "United States",
-        "coordinates": {
-          "lat": 78.79743650680442,
-          "lng": -118.1046872139417
-        }
+        "state": "Dakota"
       },
       "credit_card": {
         "cc_number": "6771-8988-2202-5426"

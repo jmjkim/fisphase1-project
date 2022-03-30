@@ -39,8 +39,6 @@ function dataDisplayer(data) {
         return destructuring
     })
 
-
-    // Creates employee containers
     destructuredData.forEach(obj => {
     const listContainer = document.querySelector(".employee_list_container")
     const employeeDiv = document.createElement("div") 
@@ -74,7 +72,6 @@ function dataDisplayer(data) {
     
     listContainer.appendChild(employeeDiv)
 
-    // Creates Categories & Detail contents
     Object.entries(obj).forEach(entry => {
         const categoryLi = document.createElement("li")
         const detailLi = document.createElement("li")
@@ -103,7 +100,7 @@ function dataFinder() {
 
         const target = document.querySelector(`#employee_${+e.target[0].value}`)
 
-        target.setAttribute("class", "search_result") // Simple interactivity: Highlights on searched employee
+        target.setAttribute("class", "search_result")
         target.addEventListener("click", () => target.setAttribute("class", "employee_div"))
 
         target.scrollIntoView(true)
