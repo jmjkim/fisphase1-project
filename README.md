@@ -38,3 +38,5 @@ I was always curious about how "behind curtain" process of a web browser. After 
 Jack Kim (myself)
 
 For any questions, feedbacks, you can email me [jmjkim00@icloud.com]()
+
+My personal dev blog [https://dev.to/jmjkim]()
