@@ -71,7 +71,9 @@ function dataDisplayer(data) {
 
 
 function dataFinder() {
-    document.querySelector("#employee_finder").addEventListener("submit", (e) => { 
+    const form = document.querySelector("#employee_finder")
+    
+    form.addEventListener("submit", (e) => { 
         e.preventDefault()
 
         const target = document.querySelector(`#employee_${+e.target[0].value}`)
