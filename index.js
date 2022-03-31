@@ -53,9 +53,8 @@ function dataDisplayer(data) {
             </div>
         </div>
         `        
-
         listContainer.insertAdjacentHTML("afterbegin", html)
-
+        
         const category = document.querySelector(`#employee_${obj.id} .category_div`)
         const detail = document.querySelector(`#employee_${obj.id} .detail_div`)
         const editBtn = document.querySelector(`#edit_btn_${obj.id}`)
@@ -101,7 +100,6 @@ function dataEditor(editBtn, updateEdit, targetId) {
             }
         })
     })
-
     updateEdit.addEventListener("click", () => {
         detail.setAttribute("contenteditable", false)
         detail.setAttribute("class", "detail_div")
@@ -132,7 +130,6 @@ function dataEditor(editBtn, updateEdit, targetId) {
                 title: liChildNode[8].innerText,
             }
         }
-
         fetch(`http://localhost:3000/employees/${targetId}`, ({
             method: "PATCH",
             headers: {
