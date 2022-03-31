@@ -53,17 +53,16 @@ function dataDisplayer(data) {
             </div>
         </div>
         `        
+
         listContainer.insertAdjacentHTML("afterbegin", html)
         
-        const category = document.querySelector(`#employee_${obj.id} .category_div`)
-        const detail = document.querySelector(`#employee_${obj.id} .detail_div`)
         const editBtn = document.querySelector(`#edit_btn_${obj.id}`)
         const updateEdit = document.querySelector(`#submit_edit_${obj.id}`)
 
         Object.entries(obj).forEach(entry => {
             if (entry[0] !== "photo") {
-                category.insertAdjacentHTML("beforeend", `<li>${entry[0].toUpperCase()}</li>`)
-                detail.insertAdjacentHTML("beforeend", `<li>${entry[1]}</li>`)
+                document.querySelector(`#employee_${obj.id} .category_div`).insertAdjacentHTML("beforeend", `<li>${entry[0].toUpperCase()}</li>`)
+                document.querySelector(`#employee_${obj.id} .detail_div`).insertAdjacentHTML("beforeend", `<li>${entry[1]}</li>`)
             }
         })
         dataEditor(editBtn, updateEdit, obj.id)
@@ -72,9 +71,7 @@ function dataDisplayer(data) {
 
 
 function dataFinder() {
-    const form = document.querySelector("#employee_finder")
-    
-    form.addEventListener("submit", (e) => { 
+    document.querySelector("#employee_finder").addEventListener("submit", (e) => { 
         e.preventDefault()
 
         const target = document.querySelector(`#employee_${+e.target[0].value}`)
@@ -140,4 +137,11 @@ function dataEditor(editBtn, updateEdit, targetId) {
         }))
         .catch(err => console.error(err))
     })
+}
+
+function dataSort(data) {
+    const sortedByFirst = data.map(obj => obj.first)
+    sortedByFirst.sort()
+
+    console.log(sortedByFirst)
 }
