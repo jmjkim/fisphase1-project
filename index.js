@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => { 
-    dataFetcher(dataDisplayer)
+    dataFetcher(dataRefiner)
     dataFinder()
 })
 
@@ -12,7 +12,7 @@ function dataFetcher(callback) {
 }
 
 
-function dataDisplayer(data) {
+function dataRefiner(data) {
     const destructuredData = data.map(({
         avatar, 
         id, 
@@ -39,9 +39,22 @@ function dataDisplayer(data) {
         }
         return destructuring
     })
+
+    dataDisplayer(destructuredData)
+
+    const sortBtn = document.querySelector("#sort_btn")
+    sortBtn.addEventListener("click", (e) => {
+        e.preventDefault()
+
+        destructuredData.sort(sortByFirstName)
+        dataDisplayer(destructuredData)
+    })
+}
+
+function dataDisplayer(data) {
     const listContainer = document.querySelector(".employee_list_container")
 
-    destructuredData.forEach(obj => {
+    data.forEach(obj => {
         const html = `
         <div class="employee_div" id="employee_${obj.id}">
             <img src="${obj.photo}">
@@ -53,7 +66,6 @@ function dataDisplayer(data) {
             </div>
         </div>
         `        
-
         listContainer.insertAdjacentHTML("afterbegin", html)
         
         const editBtn = document.querySelector(`#edit_btn_${obj.id}`)
@@ -65,14 +77,23 @@ function dataDisplayer(data) {
                 document.querySelector(`#employee_${obj.id} .detail_div`).insertAdjacentHTML("beforeend", `<li>${entry[1]}</li>`)
             }
         })
+
         dataEditor(editBtn, updateEdit, obj.id)
     })
 }
 
 
+function sortByFirstName(a, b) {
+    const nameA = a.first.toUpperCase()
+    const nameB = b.first.toUpperCase()
+
+    return nameA > nameB ? -1 : nameA < nameB ? 1 : 0
+}
+
+
 function dataFinder() {
     const form = document.querySelector("#employee_finder")
-    
+
     form.addEventListener("submit", (e) => { 
         e.preventDefault()
 
@@ -99,6 +120,7 @@ function dataEditor(editBtn, updateEdit, targetId) {
             }
         })
     })
+
     updateEdit.addEventListener("click", () => {
         detail.setAttribute("contenteditable", false)
         detail.setAttribute("class", "detail_div")
@@ -129,6 +151,7 @@ function dataEditor(editBtn, updateEdit, targetId) {
                 title: liChildNode[8].innerText,
             }
         }
+
         fetch(`http://localhost:3000/employees/${targetId}`, ({
             method: "PATCH",
             headers: {
@@ -139,11 +162,4 @@ function dataEditor(editBtn, updateEdit, targetId) {
         }))
         .catch(err => console.error(err))
     })
-}
-
-function dataSort(data) {
-    const sortedByFirst = data.map(obj => obj.first)
-    sortedByFirst.sort()
-
-    console.log(sortedByFirst)
 }

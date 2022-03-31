@@ -741,20 +741,13 @@
       "social_insurance_number": "479723876",
       "date_of_birth": "1979-02-03",
       "employment": {
-        "title": "Real-Estate Agent",
-        "key_skill": "Organisation"
+        "title": "Real-Estate Agent"
       },
       "address": {
-        "city": "Lesleyhaven",
-        "street_name": "Ruecker Track",
+        "city": "Lesleyhaven Wyoming",
         "street_address": "5868 Feeney Meadow",
-        "zip_code": "86264",
-        "state": "Wyoming",
-        "country": "United States",
-        "coordinates": {
-          "lat": -53.56749705777427,
-          "lng": -62.73340517403015
-        }
+        "zip_code": "undefined",
+        "state": "86264"
       },
       "credit_card": {
         "cc_number": "4771049668967"
