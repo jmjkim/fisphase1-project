@@ -16,10 +16,11 @@ header {
     top: 0px;
 }
 
-#employee_finder {
-    padding: 6px;
-    position: sticky;
-    top: 0px;
+main {
+    display: flex;
+    flex-direction: column;
+    margin: 5px auto;
+    justify-content: center;
 }
 
 img {
@@ -28,6 +29,12 @@ img {
     border-radius: 50%;
     margin: 10px;
     max-width: 100%;
+}
+
+#employee_finder {
+    padding: 6px;
+    position: sticky;
+    top: 0px;
 }
 
 .search_result {
@@ -45,7 +52,7 @@ img {
     display: flex;
     flex-direction: column;
     margin: 5px auto;
-    width: max-content;
+    justify-content: center;
 }
 
 .employee_div {
@@ -54,17 +61,17 @@ img {
     border: 1px solid #dbdbdb;
     border-radius: 5px;
     display: flex;
-    justify-content: center;
     margin: 10px;
+    width: 100%;
 }
 
 .button {
-    margin: 15px 5px;
+    margin: 5px;
     align-self: flex-end;
 }
 
 .subContainer {
-    display: inline-flex;
+    display: flex;
     margin: 4px;
 }
 
@@ -77,20 +84,24 @@ img {
     padding: 2px;
 }
 
+.detail_div li:nth-child(4),
+.detail_div li:nth-child(5),
+.detail_div li:nth-child(6) {
+    background-color: #d3f4ff;
+    color: #d3f4ff;
+}
+
+.detail_div li:nth-child(4):hover,
+.detail_div li:nth-child(5):hover,
+.detail_div li:nth-child(6):hover {
+    background-color: #ebfaff;
+    color: #000;
+}
+
 .edit_mode li {
     background-color: #ffcece;
     border-radius: 5px;
     display: flex;
     margin: 5px;
     padding: 2px;
-}
-
-.detail_div .pid {
-    background-color: #d3f4ff;
-    color: #d3f4ff;
-}
-
-.detail_div .pid:hover {
-    background-color: #ebfaff;
-    color: #000;
 }

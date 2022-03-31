@@ -15,7 +15,8 @@ function dataFetcher(callback) {
 function dataDisplayer(data) {
     const destructuredData = data.map(({
         avatar, 
-        id, first_name, 
+        id, 
+        first_name, 
         last_name, 
         social_insurance_number, 
         date_of_birth, 
@@ -38,56 +39,35 @@ function dataDisplayer(data) {
         }
         return destructuring
     })
+    const listContainer = document.querySelector(".employee_list_container")
 
     destructuredData.forEach(obj => {
-    const listContainer = document.querySelector(".employee_list_container")
-    const employeeDiv = document.createElement("div") 
-    const subContainer = document.createElement("div")
-    const categoryDiv = document.createElement("div") 
-    const detailDiv = document.createElement("div") 
-    const img = document.createElement("img")
-    const editBtn = document.createElement("button")
-    const updateEdit = document.createElement("button")
-    
-    employeeDiv.appendChild(img)
-    employeeDiv.appendChild(subContainer)
-    subContainer.appendChild(categoryDiv)
-    subContainer.appendChild(detailDiv)
-    employeeDiv.appendChild(editBtn)
-    employeeDiv.appendChild(updateEdit)
-    
-    img.setAttribute("src", obj.photo)
-    employeeDiv.setAttribute("class", "employee_div")
-    employeeDiv.setAttribute("id", `employee_${obj.id}`)
-    subContainer.setAttribute("class", "subContainer")
-    categoryDiv.setAttribute("class", "category_div")
-    detailDiv.setAttribute("class", "detail_div")
-    editBtn.setAttribute("class", "button")
-    editBtn.setAttribute("id", `edit_btn_${obj.id}`)
-    updateEdit.setAttribute("class", "button")
-    updateEdit.setAttribute("id", `submit_edit_${obj.id}`)
+        const html = `
+        <div class="employee_div" id="employee_${obj.id}">
+            <img src="${obj.photo}">
+            <div class="subContainer">
+                <div class="category_div"></div>
+                <div class="detail_div"></div>
+                <button class="button" id="edit_btn_${obj.id}">Edit</button>
+                <button class="button" id="submit_edit_${obj.id}">Update</button>
+            </div>
+        </div>
+        `        
 
-    editBtn.innerText = "Edit"
-    updateEdit.innerText = "Update"
-    
-    listContainer.appendChild(employeeDiv)
+        listContainer.insertAdjacentHTML("afterbegin", html)
 
-    Object.entries(obj).forEach(entry => {
-        const categoryLi = document.createElement("li")
-        const detailLi = document.createElement("li")
-        
-        if (entry[0] !== "photo") {
-            categoryLi.insertAdjacentText("afterbegin", entry[0].toUpperCase())
-            detailLi.insertAdjacentText("afterbegin", entry[1])
+        const category = document.querySelector(`#employee_${obj.id} .category_div`)
+        const detail = document.querySelector(`#employee_${obj.id} .detail_div`)
+        const editBtn = document.querySelector(`#edit_btn_${obj.id}`)
+        const updateEdit = document.querySelector(`#submit_edit_${obj.id}`)
 
-            categoryDiv.appendChild(categoryLi)
-            detailDiv.appendChild(detailLi)
-
-            if (entry[0] === "ssn" || entry[0] === "address" || entry[0] === "dob") {
-                detailLi.setAttribute("class", "pid")
+        Object.entries(obj).forEach(entry => {
+            if (entry[0] !== "photo") {
+                category.insertAdjacentHTML("beforeend", `<li>${entry[0].toUpperCase()}</li>`)
+                detail.insertAdjacentHTML("beforeend", `<li>${entry[1]}</li>`)
             }
-        }})
-    dataEditor(editBtn, updateEdit, obj.id)    
+        })
+        dataEditor(editBtn, updateEdit, obj.id)
     })
 }
 
@@ -102,34 +82,32 @@ function dataFinder() {
 
         target.setAttribute("class", "search_result")
         target.addEventListener("click", () => target.setAttribute("class", "employee_div"))
-
         target.scrollIntoView(true)
     })
 }
 
 
 function dataEditor(editBtn, updateEdit, targetId) {    
-    const target = document.querySelector(`#employee_${targetId}`)
-    const detailLi = target.childNodes[1].childNodes[1]
+    const detail = document.querySelector(`#employee_${targetId} .detail_div`)
 
     editBtn.addEventListener("click", () => {
-        detailLi.setAttribute("contenteditable", true)
-        detailLi.setAttribute("class", "edit_mode")
+        detail.setAttribute("contenteditable", true)
+        detail.setAttribute("class", "edit_mode")
 
-        detailLi.addEventListener("keydown", (e) => {
+        detail.addEventListener("keydown", (e) => {
             if (e.code === "Escape") {
-                detailLi.setAttribute("contenteditable", false)
-                detailLi.setAttribute("class", "detail_div")
+                detail.setAttribute("contenteditable", false)
+                detail.setAttribute("class", "detail_div")
             }
         })
     })
 
     updateEdit.addEventListener("click", () => {
-        detailLi.setAttribute("contenteditable", false)
-        detailLi.setAttribute("class", "detail_div")
+        detail.setAttribute("contenteditable", false)
+        detail.setAttribute("class", "detail_div")
 
-        const splitAddress = detailLi.childNodes[5].innerText.split(" ")
-        const liChildNode = detailLi.childNodes
+        const splitAddress = detail.childNodes[5].innerText.split(" ")
+        const liChildNode = detail.childNodes
         
         const cityOf = `${splitAddress[3]} ${splitAddress[4]}`
         const streetAddress = `${splitAddress[0]} ${splitAddress[1]} ${splitAddress[2]}`
