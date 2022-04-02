@@ -11,9 +11,9 @@ h1, h2 {
 
 header {
     display: flex;
-    justify-content: center;
-    position: sticky;
+    justify-content: flex-end;
     top: 0px;
+    padding: 4px;
 }
 
 main {
@@ -26,26 +26,39 @@ main {
 img {
     background-color: #fff;
     border: 1px solid #e4e4e4;
-    border-radius: 50%;
+    border-radius: 10px;
     margin: 10px;
     max-width: 100%;
 }
 
-#employee_finder {
+.register_title {
+    background-color: #555;
+    border-radius: 5px;
+    color: #fff;
+    padding: 4px;
+}
+
+#employee_register {
+    background-color: #f5f5f5;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 6px;
     padding: 6px;
-    position: sticky;
-    top: 0px;
+    position: absolute;
+    right: 1em;
+    top: 125px;
 }
 
 .search_result {
     align-items: center;
     background-color: #f5f5f5;
     border: 2px solid #30ff3b;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
-    justify-content: center;
     margin: 10px;
-
+    width: 100%;
 }
 
 .employee_list_container {
@@ -59,15 +72,22 @@ img {
     align-items: center;
     background-color: #f5f5f5;
     border: 1px solid #dbdbdb;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
-    margin: 10px;
+    margin: 10px 10px 0px 10px;
     width: 100%;
 }
 
+.btn_container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 4px;
+    margin-bottom: 40px;
+}
+
 .button {
-    margin: 5px;
-    align-self: flex-end;
+    cursor: pointer;
+    margin: 4px;
 }
 
 .subContainer {
@@ -78,7 +98,7 @@ img {
 .category_div li,
 .detail_div li {
     background-color: #ebfaff;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     margin: 5px;
     padding: 2px;
@@ -100,7 +120,7 @@ img {
 
 .edit_mode li {
     background-color: #ffcece;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     margin: 5px;
     padding: 2px;

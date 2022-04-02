@@ -585,20 +585,13 @@
       "social_insurance_number": "652504887",
       "date_of_birth": "1987-02-17",
       "employment": {
-        "title": "Legal Liaison",
-        "key_skill": "Self-motivated"
+        "title": "Legal Liaison"
       },
       "address": {
         "city": "South Vernstad",
-        "street_name": "Arturo Knoll",
         "street_address": "61142 Tessie Harbor",
-        "zip_code": "00649",
-        "state": "South Dakota",
-        "country": "United States",
-        "coordinates": {
-          "lat": -33.750252406756374,
-          "lng": -61.4724470596766
-        }
+        "zip_code": "Dakota",
+        "state": "South"
       },
       "credit_card": {
         "cc_number": "5161-2375-5397-3100"

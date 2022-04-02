@@ -14,13 +14,42 @@
     <header>
         <form id="employee_finder">
             <input type="search" id="id_search" maxlength="4" placeholder="Search By ID">
-            <button id="search_btn" type="submit">Search</button>
+            <button id="search_btn" class="button" type="submit">Search</button>
         </form>
-        <button id="sort_btn" class="button">Sort By First Name</button>
+        <button id="sort_btn" class="button" type="button">Sort By First Name</button>
     </header>
 
     <h2>List of Employees</h2>
     <main>
+        <div class="employee_register_container">
+            <form id="employee_register">
+                <label class="register_title">Employee Register</label>
+                <label>ID:</label>
+                <input type="text" id="id_register" minlength="2" maxlength="4" placeholder="4 digits">
+                <label>First:</label>
+                <input type="text" id="first_register" maxlength="20">
+                <label>Last:</label>
+                <input type="text" id="last_register" maxlength="20">
+                <label>SSN:</label>
+                <input type="text" id="ssn_register" maxlength="11" placeholder="123-45-6789">
+                <label>DOB:</label>
+                <input type="text" id="dob_register" maxlength="10" placeholder="YYYY-MM-DD">
+                <label>Address:</label>
+                <input type="text" id="street_register" placeholder="Street">
+                <input type="text" id="city_register" placeholder="City">
+                <input type="text" id="state_register" placeholder="State">
+                <input type="text" id="zip_register" placeholder="Zip Code">
+                <label>Email:</label>
+                <input type="text" id="email_register">
+                <label>Phone:</label>
+                <input type="text" id="phone_register">
+                <label>Position:</label>
+                <input type="text" id="employment_register">
+                <label>Photo:</label>
+                <input type="text" id="photo_register">
+                <button id="register_btn" class="button" type="submit">Register</button>
+            </form>
+        </div>
         <div class="employee_list_container"></div>
     </main>
 </body>

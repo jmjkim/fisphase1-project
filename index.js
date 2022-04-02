@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => { 
     dataFetcher(dataRefiner)
+    dataRegister()
     dataFinder()
 })
 
@@ -13,6 +14,7 @@ function dataFetcher(callback) {
 
 
 function dataRefiner(data) {
+    const sortBtn = document.querySelector("#sort_btn")
     const destructuredData = data.map(({
         avatar, 
         id, 
@@ -42,7 +44,6 @@ function dataRefiner(data) {
 
     dataDisplayer(destructuredData)
 
-    const sortBtn = document.querySelector("#sort_btn")
     sortBtn.addEventListener("click", (e) => {
         e.preventDefault()
 
@@ -55,21 +56,25 @@ function dataDisplayer(data) {
     const listContainer = document.querySelector(".employee_list_container")
 
     data.forEach(obj => {
-        const html = `
+        const employeeDiv = `
         <div class="employee_div" id="employee_${obj.id}">
             <img src="${obj.photo}">
             <div class="subContainer">
                 <div class="category_div"></div>
                 <div class="detail_div"></div>
-                <button class="button" id="edit_btn_${obj.id}">Edit</button>
-                <button class="button" id="submit_edit_${obj.id}">Update</button>
             </div>
         </div>
+        <div class="btn_container">
+            <button class="button" id="edit_btn_${obj.id}">Edit</button>
+            <button class="button" id="submit_edit_${obj.id}">Update</button>
+            <button class="button" id="delete_${obj.id}">Delete</button>
+        </div>
         `        
-        listContainer.insertAdjacentHTML("afterbegin", html)
+        listContainer.insertAdjacentHTML("afterbegin", employeeDiv)
         
         const editBtn = document.querySelector(`#edit_btn_${obj.id}`)
         const updateEdit = document.querySelector(`#submit_edit_${obj.id}`)
+        const deleteBtn = document.querySelector(`#delete_${obj.id}`)
 
         Object.entries(obj).forEach(entry => {
             if (entry[0] !== "photo") {
@@ -79,6 +84,7 @@ function dataDisplayer(data) {
         })
 
         dataEditor(editBtn, updateEdit, obj.id)
+        dataRemover(deleteBtn, obj.id)
     })
 }
 
@@ -91,17 +97,47 @@ function sortByFirstName(a, b) {
 }
 
 
-function dataFinder() {
-    const form = document.querySelector("#employee_finder")
-
-    form.addEventListener("submit", (e) => { 
+function dataRegister() {
+    const registerForm = document.querySelector("#employee_register")
+    
+    registerForm.addEventListener("submit", (e) => {
         e.preventDefault()
 
-        const target = document.querySelector(`#employee_${+e.target[0].value}`)
+        const inputArr = []
+        const inputs = e.target.querySelectorAll("input")
 
-        target.setAttribute("class", "search_result")
-        target.addEventListener("click", () => target.setAttribute("class", "employee_div"))
-        target.scrollIntoView(true)
+        inputs.forEach(input => inputArr.push(input.value))
+
+        const postContent = {
+            id: +inputArr[0],
+            first_name: inputArr[1],
+            last_name: inputArr[2],
+            social_insurance_number: inputArr[3],
+            date_of_birth: inputArr[4],
+            address: {
+                city: inputArr[6],
+                street_address: inputArr[5],
+                zip_code: inputArr[8],
+                state: inputArr[7]
+            },
+            email: inputArr[9],
+            phone_number: inputArr[10],
+            employment: {
+                title: inputArr[11]
+            },
+            avatar: inputArr[12]
+        }
+
+        fetch("http://localhost:3000/employees", ({
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(postContent)
+        }))
+
+        dataFetcher(dataRefiner)
     })
 }
 
@@ -125,8 +161,8 @@ function dataEditor(editBtn, updateEdit, targetId) {
         detail.setAttribute("contenteditable", false)
         detail.setAttribute("class", "detail_div")
 
-        const splitAddress = detail.childNodes[5].innerText.split(" ")
         const liChildNode = detail.childNodes
+        const splitAddress = detail.childNodes[5].innerText.split(" ")
         
         const cityOf = `${splitAddress[3]} ${splitAddress[4]}`
         const streetAddress = `${splitAddress[0]} ${splitAddress[1]} ${splitAddress[2]}`
@@ -134,7 +170,7 @@ function dataEditor(editBtn, updateEdit, targetId) {
         const stateOf = splitAddress[5]
 
         const patchContent = {
-            id: liChildNode[0].innerText, 
+            id: +liChildNode[0].innerText, 
             first_name: liChildNode[1].innerText, 
             last_name: liChildNode[2].innerText, 
             social_insurance_number: liChildNode[3].innerText, 
@@ -161,5 +197,28 @@ function dataEditor(editBtn, updateEdit, targetId) {
             body: JSON.stringify(patchContent)
         }))
         .catch(err => console.error(err))
+    })
+}
+
+
+function dataFinder() {
+    const form = document.querySelector("#employee_finder")
+
+    form.addEventListener("submit", (e) => { 
+        e.preventDefault()
+
+        const target = document.querySelector(`#employee_${e.target[0].value}`)
+
+        target.setAttribute("class", "search_result")
+        target.addEventListener("click", () => target.setAttribute("class", "employee_div"))
+        target.scrollIntoView(true)
+    })
+}
+
+function dataRemover(deleteBtn, targetId) {
+    deleteBtn.addEventListener("click", () => {
+        fetch(`http://localhost:3000/employees/${targetId}`, ({
+            method: "DELETE"
+        }))
     })
 }
