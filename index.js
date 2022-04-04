@@ -147,19 +147,19 @@ function dataEditor(editBtn, updateEdit, targetId) {
     const detail = document.querySelector(`#employee_${targetId} .detail_div`)
 
     editBtn.addEventListener("click", () => {
-        detail.setAttribute("contenteditable", true)
+        detail.toggleAttribute("contenteditable", true)
         detail.setAttribute("class", "edit_mode")
 
         detail.addEventListener("keydown", (e) => {
             if (e.code === "Escape") {
-                detail.setAttribute("contenteditable", false)
+                detail.toggleAttribute("contenteditable", false)
                 detail.setAttribute("class", "detail_div")
             }
         })
     })
 
     updateEdit.addEventListener("click", () => {
-        detail.setAttribute("contenteditable", false)
+        detail.toggleAttribute("contenteditable", false)
         detail.setAttribute("class", "detail_div")
 
         const liChildNode = detail.childNodes
