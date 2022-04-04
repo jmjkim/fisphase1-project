@@ -2,10 +2,10 @@
 
 HR *(Human Resource)* Manager is a simple Javascript application where you can bascially search employees or utilize CRUD features (Create, Read, Update, Delete) in a prototype database *([JSON-server](https://www.npmjs.com/package/json-server))*.
 
->*All of data within the database is virtual (see [Public API](https://random-data-api.com/) reference*).
+>*All of data within the database is virtual (see [Public API](https://random-data-api.com/))*.
 
 ## Motivation
-I was always curious about the "behind curtain" process of an application on a web broswer. After working on this small project, I acquired basic understandings of "how" things work and now I am more interested about the back-end side of the software engineering.
+This is my first software engineering project at Flatiron School. I was always curious about the "behind curtain" process of an application on a web broswer. After working on this small project, I acquired basic understandings of "how" things work and now I am more interested about the back-end side of the software engineering.
 
 ## Features
 - To search an employee, enter employee's ID on the `search bar` on top right corner and click `Search` button (_Browser will scroll onto the matching ID employee_).
@@ -25,6 +25,7 @@ I was always curious about the "behind curtain" process of an application on a w
 - External CSS file to enhances visual performance.
 
 - Only vanilla JavaScript is used for this project.
+- 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
