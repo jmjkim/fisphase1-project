@@ -12,6 +12,13 @@
 <body>
     <h1>HR Manager</h1>
     <header>
+        <div class="timer_container">
+            <button id="start_timer" class="button" type="button">Start</button>
+            <span id="time"></span>
+            <button id="stop_timer"  class="button" type="button" disabled>Stop</button>
+            <button id="pause_timer" class="button" type="button" hidden>Pause</button>
+            <button id="resume_timer" class="button" type="button" hidden>Resume</button>
+        </div>
         <form id="employee_finder">
             <input type="search" id="id_search" maxlength="4" placeholder="Search By ID">
             <button id="search_btn" class="button" type="submit">Search</button>

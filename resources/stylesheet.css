@@ -125,3 +125,9 @@ img {
     margin: 5px;
     padding: 2px;
 }
+
+.timer_container {
+    display: flex;
+    position: absolute;
+    left: 0;
+}

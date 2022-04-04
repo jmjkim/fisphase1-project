@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dataFetcher(dataRefiner)
     dataRegister()
     dataFinder()
+    timer()
 })
 
 
@@ -215,10 +216,62 @@ function dataFinder() {
     })
 }
 
+
 function dataRemover(deleteBtn, targetId) {
     deleteBtn.addEventListener("click", () => {
         fetch(`http://localhost:3000/employees/${targetId}`, ({
             method: "DELETE"
         }))
+    })
+}
+
+
+function timer() {
+    const startBtn = document.querySelector("#start_timer")
+    const stopBtn = document.querySelector("#stop_timer")
+    const time = document.querySelector("#time")
+    const pauseBtn = document.querySelector("#pause_timer")
+    const resumeBtn = document.querySelector("#resume_timer")
+
+    let interval
+    let timePaused = false
+    let count = 0
+
+    startBtn.addEventListener("click", () => {
+        timePaused = false
+        startBtn.toggleAttribute("disabled")
+        stopBtn.toggleAttribute("disabled", false)
+        pauseBtn.toggleAttribute("hidden", false)
+    
+        interval = setInterval(() => {
+            if (!timePaused) {
+                time.innerText = count += 1
+            }
+        }, 1000)
+    })
+
+    pauseBtn.addEventListener("click", () => {
+        timePaused = true
+        
+        pauseBtn.toggleAttribute("hidden", true)
+        resumeBtn.toggleAttribute("hidden", false)
+    })
+
+    resumeBtn.addEventListener("click", () => {
+        timePaused = false
+
+        resumeBtn.toggleAttribute("hidden", true)
+        pauseBtn.toggleAttribute("hidden", false)
+    })
+
+    stopBtn.addEventListener("click", () => {
+        clearInterval(interval)
+        time.innerText = ""
+        count = 0
+
+        startBtn.toggleAttribute("disabled", false)
+        stopBtn.toggleAttribute("disabled", true)
+        pauseBtn.toggleAttribute("hidden", true)
+        resumeBtn.toggleAttribute("hidden", true)
     })
 }
