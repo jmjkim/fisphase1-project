@@ -9,10 +9,15 @@ This is my first software engineering project at Flatiron School. I was always c
 
 ## Features
 - To search an employee, enter employee's ID on the `search bar` on top right corner and click `Search` button (_Browser will scroll onto the matching ID employee_).
+
 - To view employees by their first name alphabetically, click `Sort By First Name` button on top right corner.
+
 - To register new employee, enter new employee's information on the employee register and click `register` button.
+
 - To edit employee's information, click on `Edit` button, the employee container will then turn in red indicating that you are currently in **Edit Mode**. You can exit the Edit Mode by pressing `Escape (Esc)` on your keyboard. Enter new information and click `Update` button.
+
 - To delete employee from the database, click `Delete` button on right bottom of the employee's container.
+
 - A timer (only displays in second) is locateed on top left corner for my current coding bootcamp's practice purpose.
 
 ## Description
