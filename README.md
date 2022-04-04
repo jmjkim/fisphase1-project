@@ -27,7 +27,7 @@ This is my first software engineering project at Flatiron School. I was always c
 
 - CRUD features are coded with `Fetch API`.
 
-- `dataRefiner` function is used with **destructuring assignment** syntax.
+- `dataRefiner()` is used with **destructuring assignment** syntax.
 
 - External CSS file to enhances visual performance.
 
