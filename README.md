@@ -1,27 +1,38 @@
 # HR Manager
 
-HR *(Human Resource)* Manager is a simple Javascript application where you can search, view and update employee's information on database (*[JSON-server](https://www.npmjs.com/package/json-server)*).
+HR *(Human Resource)* Manager is a simple Javascript application where you can bascially search employees or utilize CRUD features **_(Create, Read, Update, Delete)_** in a prototype database *([JSON-server](https://www.npmjs.com/package/json-server))*.
 
->*All of data within the database is virtual (see [Public API](https://random-data-api.com/) reference*).
+>*All of data within the database is virtual (see [Public API](https://random-data-api.com/))*.
 
 ## Motivation
-I was always curious about how "behind curtain" process of a web browser. After working on this small project, I acquired basic understandings of the "how" and now I am more interested about the back-end side of an application.
+This is my first software engineering project at Flatiron School. I was always curious about the "behind curtain" process of an application on a web broswer. After working on this small project, I acquired basic understandings of "how" things work and now I am more interested about the back-end side of the software engineering.
 
 ## Features
-- A **search bar** on top right corner, you can enter employee's ID then it will scroll onto the target employee.
+- To search an employee, enter employee's ID on the `search bar` on top right corner and click `Search` button (_Browser will scroll onto the matching ID employee_).
 
-- Click on **Edit** button will turn employee box in red which indicates you are currently in Edit Mode. You can exit the Edit Mode by pressing **Escape (Esc)**. Enter new information and click on **Update** to update employee's new information.
+- To view employees by their first name alphabetically, click `Sort By First Name` button on top right corner.
 
-> Creating, deleting features are not currently implemented.
+- To register new employee, enter new employee's information on the employee register and click `register` button.
+
+- To edit employee's information, click on `Edit` button, the employee container will then turn in red indicating that you are currently in **Edit Mode**. You can exit the Edit Mode by pressing `Escape (Esc)` on your keyboard. Enter new information and click `Update` button.
+
+- To delete employee from the database, click `Delete` button on right bottom of the employee's container.
+
+- A timer (only displays in second) is locateed on top left corner for my current coding bootcamp's practice purpose.
 
 ## Description
 - HR Manager is built in a plain structure as simple as `Fetch()` -> `JSON.server` -> `.then()` -> displays data on the current web browser as its core functionality has a sole purpose, **to communicate with the database.**
 
 - A search bar is a HTML `<form>`, accepts maximum of 4 digits number and consists of one `submit` event listener with a callback function.
 
-- Updating new information is accomplished by using `PATCH` method of `Fetch API`.
+- CRUD features are coded with `Fetch API`.
+
+- `dataRefiner()` is used with **destructuring assignment** syntax.
 
 - External CSS file to enhances visual performance.
+
+- Only vanilla JavaScript is used for this project.
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
