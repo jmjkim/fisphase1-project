@@ -25,7 +25,9 @@ This is my first software engineering project at Flatiron School. I was always c
 
 - A search bar is a HTML `<form>`, accepts maximum of 4 digits number and consists of one `submit` event listener with a callback function.
 
-- Updating new information is accomplished by using `PATCH` method of `Fetch API`.
+- CRUD features are coded with `Fetch API`.
+
+- `dataRefiner` function is used with **destructuring assignment** syntax.
 
 - External CSS file to enhances visual performance.
 
