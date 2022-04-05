@@ -7,11 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function dataFetcher(callback) {
-    fetch("http://localhost:3000/employees")
-    .then(res => res.json())
-    .then(callback)
-    .catch(err => console.error(err))
-}
+        fetch("http://localhost:3000/employees")
+        .then(res => res.json())
+        .then(callback)
+        .catch(err => console.error(err))
+    }
 
 
 function dataRefiner(data) {
@@ -40,18 +40,26 @@ function dataRefiner(data) {
             phone: phone_number, 
             position: `${title}` 
         }
+
         return destructuring
     })
 
     dataDisplayer(destructuredData)
 
-    sortBtn.addEventListener("click", (e) => {
-        e.preventDefault()
-
-        destructuredData.sort(sortByFirstName)
-        dataDisplayer(destructuredData)
-    })
+    sortBtn.addEventListener("click", () => {
+        document.querySelector(".employee_list_container").replaceChildren()
+        dataDisplayer(destructuredData.sort(sortByFirstName))
+    }, {once: true})
 }
+
+
+function sortByFirstName(a, b) {
+    const nameA = a.first.toUpperCase()
+    const nameB = b.first.toUpperCase()
+
+    return nameA > nameB ? -1 : nameA < nameB ? 1 : 0
+}
+
 
 function dataDisplayer(data) {
     const listContainer = document.querySelector(".employee_list_container")
@@ -74,9 +82,9 @@ function dataDisplayer(data) {
         listContainer.insertAdjacentHTML("afterbegin", employeeDiv)
         
         const editBtn = document.querySelector(`#edit_btn_${obj.id}`)
-        const updateEdit = document.querySelector(`#submit_edit_${obj.id}`)
+        const updateBtn = document.querySelector(`#submit_edit_${obj.id}`)
         const deleteBtn = document.querySelector(`#delete_${obj.id}`)
-
+        
         Object.entries(obj).forEach(entry => {
             if (entry[0] !== "photo") {
                 document.querySelector(`#employee_${obj.id} .category_div`).insertAdjacentHTML("beforeend", `<li>${entry[0].toUpperCase()}</li>`)
@@ -84,17 +92,9 @@ function dataDisplayer(data) {
             }
         })
 
-        dataEditor(editBtn, updateEdit, obj.id)
+        dataEditor(editBtn, updateBtn, obj.id)
         dataRemover(deleteBtn, obj.id)
     })
-}
-
-
-function sortByFirstName(a, b) {
-    const nameA = a.first.toUpperCase()
-    const nameB = b.first.toUpperCase()
-
-    return nameA > nameB ? -1 : nameA < nameB ? 1 : 0
 }
 
 
@@ -137,13 +137,14 @@ function dataRegister() {
             },
             body: JSON.stringify(postContent)
         }))
-
-        dataFetcher(dataRefiner)
+        .then(alert("New Employee has been registered."))
+        .then(location.reload())
+        .catch(err => console.err(err))
     })
 }
 
 
-function dataEditor(editBtn, updateEdit, targetId) {    
+function dataEditor(editBtn, updateBtn, targetId) {   
     const detail = document.querySelector(`#employee_${targetId} .detail_div`)
 
     editBtn.addEventListener("click", () => {
@@ -158,7 +159,7 @@ function dataEditor(editBtn, updateEdit, targetId) {
         })
     })
 
-    updateEdit.addEventListener("click", () => {
+    updateBtn.addEventListener("click", () => {
         detail.toggleAttribute("contenteditable", false)
         detail.setAttribute("class", "detail_div")
 
@@ -197,6 +198,7 @@ function dataEditor(editBtn, updateEdit, targetId) {
             },
             body: JSON.stringify(patchContent)
         }))
+        .then(alert("Employee information has been updated."))
         .catch(err => console.error(err))
     })
 }
@@ -210,9 +212,9 @@ function dataFinder() {
 
         const target = document.querySelector(`#employee_${e.target[0].value}`)
 
+        target.scrollIntoView(true)
         target.setAttribute("class", "search_result")
         target.addEventListener("click", () => target.setAttribute("class", "employee_div"))
-        target.scrollIntoView(true)
     })
 }
 
@@ -222,6 +224,9 @@ function dataRemover(deleteBtn, targetId) {
         fetch(`http://localhost:3000/employees/${targetId}`, ({
             method: "DELETE"
         }))
+        .then(alert("Employee has been deleted."))
+        .then(location.reload())
+        .catch(err => console.err(err))
     })
 }
 
