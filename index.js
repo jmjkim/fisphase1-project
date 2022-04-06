@@ -98,6 +98,7 @@ function dataRegister() {
         inputs.forEach(input => inputArr.push(input.value))
 
         const postContent = {
+            avatar: inputArr[12],
             id: +inputArr[0],
             first_name: inputArr[1],
             last_name: inputArr[2],
@@ -114,7 +115,6 @@ function dataRegister() {
             employment: {
                 title: inputArr[11]
             },
-            avatar: inputArr[12]
         }
 
         fetch("http://localhost:3000/employees", ({
@@ -132,26 +132,26 @@ function dataRegister() {
 }
 
 function dataEditor(editBtn, updateBtn, targetId) {   
-    const detail = document.querySelector(`#employee_${targetId} .detail_div`)
+    const detailDiv = document.querySelector(`#employee_${targetId} .detail_div`)
 
     editBtn.addEventListener("click", () => {
-        detail.toggleAttribute("contenteditable", true)
-        detail.setAttribute("class", "edit_mode")
+        detailDiv.toggleAttribute("contenteditable", true)
+        detailDiv.setAttribute("class", "edit_mode")
 
-        detail.addEventListener("keydown", (e) => {
+        detailDiv.addEventListener("keydown", (e) => {
             if (e.code === "Escape") {
-                detail.toggleAttribute("contenteditable", false)
-                detail.setAttribute("class", "detail_div")
+                detailDiv.toggleAttribute("contenteditable", false)
+                detailDiv.setAttribute("class", "detail_div")
             }
         })
     })
 
     updateBtn.addEventListener("click", () => {
-        detail.toggleAttribute("contenteditable", false)
-        detail.setAttribute("class", "detail_div")
+        detailDiv.toggleAttribute("contenteditable", false)
+        detailDiv.setAttribute("class", "detail_div")
 
-        const liChildNode = detail.childNodes
-        const splitAddress = detail.childNodes[5].innerText.split(" ")
+        const liChildNode = detailDiv.childNodes
+        const splitAddress = detailDiv.childNodes[5].innerText.split(" ")
         
         const cityOf = `${splitAddress[3]} ${splitAddress[4]}`
         const streetAddress = `${splitAddress[0]} ${splitAddress[1]} ${splitAddress[2]}`
