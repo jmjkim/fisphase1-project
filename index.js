@@ -44,11 +44,11 @@ function dataRefiner(data) {
     dataDisplayer(destructuredData)
 }
 
-function dataDisplayer(data) {
+function dataDisplayer(destructuredData) {
     const sortBtn = document.querySelector("#sort_btn")
     const listContainer = document.querySelector(".employee_list_container")
 
-    data.forEach(obj => {
+    destructuredData.forEach(obj => {
         const employeeDiv = `
         <div class="employee_div" id="employee_${obj.id}">
             <img src="${obj.photo}">
@@ -82,7 +82,7 @@ function dataDisplayer(data) {
 
     sortBtn.addEventListener("click", () => {
         document.querySelector(".employee_list_container").replaceChildren()
-        dataDisplayer(data.sort(sortByFirstName))
+        dataDisplayer(destructuredData.sort(sortByFirstName))
     }, {once: true})
 }
 
