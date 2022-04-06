@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     timer()
 })
 
-
 function dataFetcher(callback) {
         fetch("http://localhost:3000/employees")
         .then(res => res.json())
@@ -13,9 +12,7 @@ function dataFetcher(callback) {
         .catch(err => console.error(err))
     }
 
-
 function dataRefiner(data) {
-    const sortBtn = document.querySelector("#sort_btn")
     const destructuredData = data.map(({
         avatar, 
         id, 
@@ -45,24 +42,16 @@ function dataRefiner(data) {
     })
 
     dataDisplayer(destructuredData)
+}
+
+function dataDisplayer(data) {
+    const sortBtn = document.querySelector("#sort_btn")
+    const listContainer = document.querySelector(".employee_list_container")
 
     sortBtn.addEventListener("click", () => {
         document.querySelector(".employee_list_container").replaceChildren()
-        dataDisplayer(destructuredData.sort(sortByFirstName))
+        dataDisplayer(data.sort(sortByFirstName))
     }, {once: true})
-}
-
-
-function sortByFirstName(a, b) {
-    const nameA = a.first.toUpperCase()
-    const nameB = b.first.toUpperCase()
-
-    return nameA > nameB ? -1 : nameA < nameB ? 1 : 0
-}
-
-
-function dataDisplayer(data) {
-    const listContainer = document.querySelector(".employee_list_container")
 
     data.forEach(obj => {
         const employeeDiv = `
@@ -96,7 +85,6 @@ function dataDisplayer(data) {
         dataRemover(deleteBtn, obj.id)
     })
 }
-
 
 function dataRegister() {
     const registerForm = document.querySelector("#employee_register")
@@ -142,7 +130,6 @@ function dataRegister() {
         .catch(err => console.err(err))
     })
 }
-
 
 function dataEditor(editBtn, updateBtn, targetId) {   
     const detail = document.querySelector(`#employee_${targetId} .detail_div`)
@@ -203,7 +190,6 @@ function dataEditor(editBtn, updateBtn, targetId) {
     })
 }
 
-
 function dataFinder() {
     const form = document.querySelector("#employee_finder")
 
@@ -218,7 +204,6 @@ function dataFinder() {
     })
 }
 
-
 function dataRemover(deleteBtn, targetId) {
     deleteBtn.addEventListener("click", () => {
         fetch(`http://localhost:3000/employees/${targetId}`, ({
@@ -230,6 +215,12 @@ function dataRemover(deleteBtn, targetId) {
     })
 }
 
+function sortByFirstName(a, b) {
+    const nameA = a.first.toUpperCase()
+    const nameB = b.first.toUpperCase()
+
+    return nameA > nameB ? -1 : nameA < nameB ? 1 : 0
+}
 
 function timer() {
     const startBtn = document.querySelector("#start_timer")
