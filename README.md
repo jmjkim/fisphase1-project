@@ -31,7 +31,7 @@ This is my first software engineering project at Flatiron School. I was always c
 
 - External CSS file to enhances visual performance.
 
-- Only vanilla JavaScript is used for this project.
+- Vanilla JavaScript is used for this project.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
