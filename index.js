@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => { 
-    dataFetcher(dataRefiner)
+    dataFetcher()
     dataRegister()
     dataFinder()
     timer()
 })
 
-function dataFetcher(callback) {
+
+function dataFetcher() {
         fetch("http://localhost:3000/employees")
         .then(res => res.json())
-        .then(callback)
+        .then(data => dataRefiner(data))
         .catch(err => console.error(err))
     }
+
 
 function dataRefiner(data) {
     const destructuredData = data.map(({
@@ -43,6 +45,7 @@ function dataRefiner(data) {
 
     dataDisplayer(destructuredData)
 }
+
 
 function dataDisplayer(destructuredData) {
     const sortBtn = document.querySelector("#sort_btn")
@@ -78,6 +81,7 @@ function dataDisplayer(destructuredData) {
         
         dataEditor(editBtn, updateBtn, obj.id)
         dataRemover(deleteBtn, obj.id)
+        firstNameShorter(destructuredData, listContainer)
     })
 
     sortBtn.addEventListener("click", () => {
@@ -85,6 +89,7 @@ function dataDisplayer(destructuredData) {
         dataDisplayer(destructuredData.sort(sortByFirstName))
     }, {once: true})
 }
+
 
 function dataRegister() {
     const registerForm = document.querySelector("#employee_register")
@@ -130,6 +135,33 @@ function dataRegister() {
         .catch(err => console.err(err))
     })
 }
+
+
+function firstNameShorter(destructuredData, listContainer) {
+    const shorterBtn = document.querySelector("#shorter_btn")
+
+    shorterBtn.addEventListener("click", () => {
+        const shortenNameEmployees = destructuredData.filter((employee) => employee.first.length <= 4)
+        listContainer.replaceChildren()
+        dataDisplayer(shortenNameEmployees)
+    })
+}
+
+
+function dataFinder() {
+    const form = document.querySelector("#employee_finder")
+
+    form.addEventListener("submit", (e) => { 
+        e.preventDefault()
+
+        const target = document.querySelector(`#employee_${e.target[0].value}`)
+
+        target.scrollIntoView(true)
+        target.setAttribute("class", "search_result")
+        target.addEventListener("click", () => target.setAttribute("class", "employee_div"))
+    })
+}
+
 
 function dataEditor(editBtn, updateBtn, targetId) {   
     const detailDiv = document.querySelector(`#employee_${targetId} .detail_div`)
@@ -190,19 +222,6 @@ function dataEditor(editBtn, updateBtn, targetId) {
     })
 }
 
-function dataFinder() {
-    const form = document.querySelector("#employee_finder")
-
-    form.addEventListener("submit", (e) => { 
-        e.preventDefault()
-
-        const target = document.querySelector(`#employee_${e.target[0].value}`)
-
-        target.scrollIntoView(true)
-        target.setAttribute("class", "search_result")
-        target.addEventListener("click", () => target.setAttribute("class", "employee_div"))
-    })
-}
 
 function dataRemover(deleteBtn, targetId) {
     deleteBtn.addEventListener("click", () => {
@@ -215,12 +234,14 @@ function dataRemover(deleteBtn, targetId) {
     })
 }
 
+
 function sortByFirstName(a, b) {
     const nameA = a.first.toUpperCase()
     const nameB = b.first.toUpperCase()
 
     return nameA > nameB ? -1 : nameA < nameB ? 1 : 0
 }
+
 
 function timer() {
     const startBtn = document.querySelector("#start_timer")

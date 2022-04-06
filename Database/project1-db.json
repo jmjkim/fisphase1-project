@@ -656,20 +656,13 @@
       "social_insurance_number": "135117349",
       "date_of_birth": "1957-05-21",
       "employment": {
-        "title": "Senior Education Director",
-        "key_skill": "Fast learner"
+        "title": "Senior Education Director"
       },
       "address": {
         "city": "North Jeannetteburgh",
-        "street_name": "Beier Inlet",
         "street_address": "47291 Kathie Hills",
         "zip_code": "80746-9381",
-        "state": "Illinois",
-        "country": "United States",
-        "coordinates": {
-          "lat": -19.826482274788233,
-          "lng": 104.28328176197317
-        }
+        "state": "Illinois"
       },
       "credit_card": {
         "cc_number": "4375897840544"
@@ -679,38 +672,6 @@
         "status": "Blocked",
         "payment_method": "Money transfer",
         "term": "Full subscription"
-      }
-    },
-    {
-      "id": 9298,
-      "uid": "62c5e872-e43a-4741-8136-96b0fc4cdc8d",
-      "password": "W4Zrv0sH3l",
-      "first_name": "Nolan",
-      "last_name": "Runolfsson",
-      "username": "na.runolfsson",
-      "email": "na.runolfsson@email.com",
-      "avatar": "https://robohash.org/aliquidsedmolestias.png?size=300x300&set=set1",
-      "gender": "Agender",
-      "phone_number": "+63 259-985-6057 x46333",
-      "social_insurance_number": "414757690",
-      "date_of_birth": "1999-04-05",
-      "employment": {
-        "title": "Senior Education Technician"
-      },
-      "address": {
-        "city": "Port Lorena",
-        "street_address": "8992 Bennett Cove",
-        "zip_code": "Jersey",
-        "state": "New"
-      },
-      "credit_card": {
-        "cc_number": "5310-7863-4645-8712"
-      },
-      "subscription": {
-        "plan": "Silver",
-        "status": "Idle",
-        "payment_method": "Apple Pay",
-        "term": "Payment in advance"
       }
     }
   ]
