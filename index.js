@@ -51,16 +51,16 @@ function dataDisplayer(destructuredData) {
     destructuredData.forEach(obj => {
         const employeeDiv = `
         <div class="employee_div" id="employee_${obj.id}">
-            <img src="${obj.photo}">
-            <div class="subContainer">
-                <div class="category_div"></div>
-                <div class="detail_div"></div>
-            </div>
+        <img src="${obj.photo}">
+        <div class="subContainer">
+        <div class="category_div"></div>
+        <div class="detail_div"></div>
+        </div>
         </div>
         <div class="btn_container">
-            <button class="button" id="edit_btn_${obj.id}">Edit</button>
-            <button class="button" id="submit_edit_${obj.id}">Update</button>
-            <button class="button" id="delete_${obj.id}">Delete</button>
+        <button class="button" id="edit_btn_${obj.id}">Edit</button>
+        <button class="button" id="submit_edit_${obj.id}">Update</button>
+        <button class="button" id="delete_${obj.id}">Delete</button>
         </div>
         `        
         listContainer.insertAdjacentHTML("afterbegin", employeeDiv)
@@ -71,17 +71,17 @@ function dataDisplayer(destructuredData) {
                 document.querySelector(`#employee_${obj.id} .detail_div`).insertAdjacentHTML("beforeend", `<li>${entry[1]}</li>`)
             }
         })
-        
+
         const editBtn = document.querySelector(`#edit_btn_${obj.id}`)
         const updateBtn = document.querySelector(`#submit_edit_${obj.id}`)
         const deleteBtn = document.querySelector(`#delete_${obj.id}`)
-
+        
         dataEditor(editBtn, updateBtn, obj.id)
         dataRemover(deleteBtn, obj.id)
     })
 
     sortBtn.addEventListener("click", () => {
-        document.querySelector(".employee_list_container").replaceChildren()
+        listContainer.replaceChildren()
         dataDisplayer(destructuredData.sort(sortByFirstName))
     }, {once: true})
 }
