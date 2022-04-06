@@ -81,16 +81,16 @@ function dataDisplayer(data) {
         `        
         listContainer.insertAdjacentHTML("afterbegin", employeeDiv)
         
-        const editBtn = document.querySelector(`#edit_btn_${obj.id}`)
-        const updateBtn = document.querySelector(`#submit_edit_${obj.id}`)
-        const deleteBtn = document.querySelector(`#delete_${obj.id}`)
-        
         Object.entries(obj).forEach(entry => {
             if (entry[0] !== "photo") {
                 document.querySelector(`#employee_${obj.id} .category_div`).insertAdjacentHTML("beforeend", `<li>${entry[0].toUpperCase()}</li>`)
                 document.querySelector(`#employee_${obj.id} .detail_div`).insertAdjacentHTML("beforeend", `<li>${entry[1]}</li>`)
             }
         })
+
+        const editBtn = document.querySelector(`#edit_btn_${obj.id}`)
+        const updateBtn = document.querySelector(`#submit_edit_${obj.id}`)
+        const deleteBtn = document.querySelector(`#delete_${obj.id}`)
 
         dataEditor(editBtn, updateBtn, obj.id)
         dataRemover(deleteBtn, obj.id)

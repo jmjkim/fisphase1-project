@@ -719,38 +719,6 @@
         "payment_method": "Apple Pay",
         "term": "Payment in advance"
       }
-    },
-    {
-      "id": 7236,
-      "uid": "b6936ba3-34cb-4fef-8d73-0f47018c27bd",
-      "password": "Thv26izZ1N",
-      "first_name": "Rick",
-      "last_name": "Bergnaum",
-      "username": "rick.bergnaum",
-      "email": "rick.bergnaum@email.com",
-      "avatar": "https://robohash.org/ullametrecusandae.png?size=300x300&set=set1",
-      "gender": "Genderqueer",
-      "phone_number": "+767 (303) 506-0747 x06006",
-      "social_insurance_number": "479723876",
-      "date_of_birth": "1979-02-03",
-      "employment": {
-        "title": "Real-Estate Agent"
-      },
-      "address": {
-        "city": "Lesleyhaven Wyoming",
-        "street_address": "5868 Feeney Meadow",
-        "zip_code": "undefined",
-        "state": "86264"
-      },
-      "credit_card": {
-        "cc_number": "4771049668967"
-      },
-      "subscription": {
-        "plan": "Student",
-        "status": "Idle",
-        "payment_method": "Google Pay",
-        "term": "Annual"
-      }
     }
   ]
 }
