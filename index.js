@@ -48,11 +48,6 @@ function dataDisplayer(data) {
     const sortBtn = document.querySelector("#sort_btn")
     const listContainer = document.querySelector(".employee_list_container")
 
-    sortBtn.addEventListener("click", () => {
-        document.querySelector(".employee_list_container").replaceChildren()
-        dataDisplayer(data.sort(sortByFirstName))
-    }, {once: true})
-
     data.forEach(obj => {
         const employeeDiv = `
         <div class="employee_div" id="employee_${obj.id}">
@@ -84,6 +79,11 @@ function dataDisplayer(data) {
         dataEditor(editBtn, updateBtn, obj.id)
         dataRemover(deleteBtn, obj.id)
     })
+
+    sortBtn.addEventListener("click", () => {
+        document.querySelector(".employee_list_container").replaceChildren()
+        dataDisplayer(data.sort(sortByFirstName))
+    }, {once: true})
 }
 
 function dataRegister() {

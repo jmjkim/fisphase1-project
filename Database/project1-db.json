@@ -695,20 +695,13 @@
       "social_insurance_number": "414757690",
       "date_of_birth": "1999-04-05",
       "employment": {
-        "title": "Senior Education Technician",
-        "key_skill": "Work under pressure"
+        "title": "Senior Education Technician"
       },
       "address": {
         "city": "Port Lorena",
-        "street_name": "Ariana Hills",
         "street_address": "8992 Bennett Cove",
-        "zip_code": "49856-4193",
-        "state": "New Jersey",
-        "country": "United States",
-        "coordinates": {
-          "lat": -29.53879000241099,
-          "lng": -68.5356986936536
-        }
+        "zip_code": "Jersey",
+        "state": "New"
       },
       "credit_card": {
         "cc_number": "5310-7863-4645-8712"
