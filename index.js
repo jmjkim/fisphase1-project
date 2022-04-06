@@ -49,6 +49,9 @@ function dataDisplayer(destructuredData) {
     const listContainer = document.querySelector(".employee_list_container")
 
     destructuredData.forEach(obj => {
+        const editBtn = document.querySelector(`#edit_btn_${obj.id}`)
+        const updateBtn = document.querySelector(`#submit_edit_${obj.id}`)
+        const deleteBtn = document.querySelector(`#delete_${obj.id}`)
         const employeeDiv = `
         <div class="employee_div" id="employee_${obj.id}">
             <img src="${obj.photo}">
@@ -71,10 +74,6 @@ function dataDisplayer(destructuredData) {
                 document.querySelector(`#employee_${obj.id} .detail_div`).insertAdjacentHTML("beforeend", `<li>${entry[1]}</li>`)
             }
         })
-
-        const editBtn = document.querySelector(`#edit_btn_${obj.id}`)
-        const updateBtn = document.querySelector(`#submit_edit_${obj.id}`)
-        const deleteBtn = document.querySelector(`#delete_${obj.id}`)
 
         dataEditor(editBtn, updateBtn, obj.id)
         dataRemover(deleteBtn, obj.id)
