@@ -2,7 +2,7 @@
 
 HR *(Human Resource)* Manager is a simple Javascript application where you can bascially search employees or utilize CRUD features **_(Create, Read, Update, Delete)_** in a prototype database *([JSON-server](https://www.npmjs.com/package/json-server))*.
 
-**View this app demonstration on my personal dev blog https://dev.to/jmjkim**
+**Please visit my personal dev blog https://dev.to/jmjkim to see app demonstration**.
 
 >*All of data within the database is virtual (see [Public API](https://random-data-api.com/))*.
 
