@@ -50,6 +50,6 @@ This is my first software engineering project at Flatiron School. I was always c
 ## Creator
 Jack Kim (myself)
 
-For any questions, feedbacks, you can [email me] (jmjkim00@icloud.com)
+For any questions, feedbacks, you can email me (jmjkim00@icloud.com)
 
-[My personal dev blog] (https://dev.to/jmjkim)
+My personal dev blog (https://dev.to/jmjkim)
