@@ -4,7 +4,7 @@ HR *(Human Resource)* Manager is a simple Javascript application where you can b
 
 >*All of data within the database is virtual (see [Public API](https://random-data-api.com/))*.
 
-**How to run database in your local -> in your CLI, run ```json-server --watch project1-db.json```**
+**Download database file and run JSON-server by typing ```json-server --watch project1-db.json``` on your CLI to see the app is working.**
 
 ## Motivation
 This is my first software engineering project at Flatiron School. I was always curious about the "behind curtain" process of an application on a web broswer. After working on this small project, I acquired basic understandings of "how" things work and now I am more interested about the back-end side of the software engineering.
